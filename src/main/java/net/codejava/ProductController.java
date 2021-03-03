@@ -13,19 +13,30 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    // RESTful API methods for Retrieval operations
+    //1 RESTful API methods for Retrieval operations - ALL
     @GetMapping("/products")
     public List<Product> list() {
         return service.listAll();
     }
 
-    // RESTful API method for Create operation
+    //2 RESTful API methods for Retrieval operations - By Id
+    @GetMapping("/products/{id}")
+    public ResponseEntity<Product> get(@PathVariable Integer id) {
+        try {
+            Product product = service.get(id);
+            return new ResponseEntity<Product>(product, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //3 RESTful API method for Create operation
     @PostMapping("/products")
     public void add(@RequestBody Product product) {
         service.save(product);
     }
 
-    // RESTful API method for Update operation
+    //4 RESTful API method for Update operation
     @PutMapping("/products/{id}")
     public ResponseEntity<?> update(@RequestBody Product product, @PathVariable Integer id) {
         try {
@@ -37,7 +48,7 @@ public class ProductController {
         }
     }
 
-    // RESTful API method for Delete operation
+    //5 RESTful API method for Delete operation
     @DeleteMapping("/products/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
