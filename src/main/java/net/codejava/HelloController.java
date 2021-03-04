@@ -44,19 +44,19 @@ public class HelloController {
 		return new Product(2, "Kindle Fire", 19.99f);
 	}
 	
-	@GetMapping("/products/{id}")
-	public ResponseEntity<Product> getProduct(@PathVariable int id) {
-		Product product = null;
-		
-		if (id == 3) {
-			product = new Product(3, "XBOX 360", 299.89f);
-		}
-		
-		if (product != null) {
-			return new ResponseEntity<Product>(product, HttpStatus.OK);
-		} else {		
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
-		}
-	}
+//	@GetMapping("/products/{id}")
+//	public ResponseEntity<Product> getProduct(@PathVariable int id) {
+//		Product product = null;
+//
+//		if (id == 3) {
+//			product = new Product(3, "XBOX 360", 299.89f);
+//		}
+//
+//		if (product != null) {
+//			return new ResponseEntity<Product>(product, HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+//		}
+//	}
 	
 }
