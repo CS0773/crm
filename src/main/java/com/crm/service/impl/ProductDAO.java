@@ -1,4 +1,6 @@
-package ws;
+package com.crm.service.impl;
+
+import com.crm.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

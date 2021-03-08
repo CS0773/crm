@@ -1,5 +1,6 @@
-package net.codejava;
+package com.crm.service.impl;
 
+import com.crm.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

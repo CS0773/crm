@@ -1,9 +1,11 @@
-package net.codejava;
+package com.crm.service.impl;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.crm.model.Product;
+import com.crm.service.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

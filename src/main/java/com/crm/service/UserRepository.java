@@ -1,5 +1,6 @@
-package net.codejava;
+package com.crm.service;
 
+import com.crm.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,5 +1,6 @@
-package net.codejava;
+package com.crm.security;
 
+import com.crm.service.impl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,12 +47,12 @@ public class CRMWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/users").authenticated()
+			.antMatchers("/login_success").authenticated()
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
 				.usernameParameter("email")
-				.defaultSuccessUrl("/users")
+				.defaultSuccessUrl("/login_success")
 				.permitAll()
 			.and()
 			.logout().logoutSuccessUrl("/").permitAll();

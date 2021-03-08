@@ -1,4 +1,7 @@
-package ws;
+package com.crm.controllers;
+
+import com.crm.service.impl.ProductDAO;
+import com.crm.model.Product;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

@@ -1,4 +1,4 @@
-package ws;
+package com.crm.model;
 import javax.persistence.*;
 
 @Entity
@@ -7,19 +7,24 @@ public class Product {
 	private String name;
 	private float price;
 
+	
+	public Product() {
+	}
+
+	
 	public Product(int id) {
 		this.id = id;
 	}
 
-	public Product() {
-	}
 
 	public Product(int id, String name, float price) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -64,5 +69,14 @@ public class Product {
 		if (id != other.id)
 			return false;
 		return true;
-	}	
+	}
+
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}
+	
+	
+
 }

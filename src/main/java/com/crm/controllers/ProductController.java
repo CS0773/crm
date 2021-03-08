@@ -1,7 +1,9 @@
-package net.codejava;
+package com.crm.controllers;
 
 import java.util.*;
 
+import com.crm.model.Product;
+import com.crm.service.impl.ProductService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 

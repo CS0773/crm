@@ -1,5 +1,8 @@
-package net.codejava;
+package com.crm.service.impl;
 
+import com.crm.model.User;
+import com.crm.service.UserRepository;
+import com.crm.service.impl.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
