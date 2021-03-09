@@ -106,7 +106,7 @@ public class AppController {
 	}
 
 	@PostMapping("/edit_user")
-	public String showEditUserPage(User userUpdated) {
+	public String showEditUserPage(@ModelAttribute("user") User userUpdated) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(userUpdated.getPassword());
 		userUpdated.setPassword(encodedPassword);
@@ -119,12 +119,13 @@ public class AppController {
 
 		userRepo.save(user);
 
-		return "login_success";
+		return "edit_success";
 	}
 
 	@RequestMapping("/delete_user/{id}")
-	public void deleteUser(@PathVariable(name = "id") int id) {
+	public String deleteUser(@PathVariable(name = "id") int id) {
 		userRepo.deleteById(Long.valueOf(id));
+		return "delete_success";
 	}
 
 }

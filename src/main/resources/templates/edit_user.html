@@ -15,17 +15,25 @@
 		<form th:action="@{/edit_user}" th:object="${user}"
 			method="post" style="max-width: 600px; margin: 0 auto;">
 		<div class="m-3">
+
+			<div class="form-group row">
+				<label class="col-4 col-form-label">User ID: </label>
+				<div class="col-8">
+					<input type="text" th:field="*{id}" class="form-control" readonly="readonly" />
+				</div>
+			</div>
+
 			<div class="form-group row">
 				<label class="col-4 col-form-label">E-mail: </label>
 				<div class="col-8">
-					<input type="email" th:field="*{email}" class="form-control" required />
+					<input type="email" th:field="*{email}" class="form-control" required autocomplete="off"/>
 				</div>
 			</div>
 			
 			<div class="form-group row">
 				<label class="col-4 col-form-label">Password: </label>
 				<div class="col-8">
-					<input type="password" th:field="*{password}" class="form-control" 
+					<input type="password" th:field="*{password}" class="form-control" autocomplete="off"
 							required minlength="6" maxlength="10"/>
 				</div>
 			</div>
@@ -33,7 +41,7 @@
 			<div class="form-group row">
 				<label class="col-4 col-form-label">First Name: </label>
 				<div class="col-8">
-					<input type="text" th:field="*{firstName}" class="form-control" 
+					<input type="text" th:field="*{firstName}" class="form-control" autocomplete="off"
 							required minlength="2" maxlength="20"/>
 				</div>
 			</div>
@@ -41,7 +49,7 @@
 			<div class="form-group row">
 				<label class="col-4 col-form-label">Last Name: </label>
 				<div class="col-8">
-					<input type="text" th:field="*{lastName}" class="form-control" 
+					<input type="text" th:field="*{lastName}" class="form-control" autocomplete="off"
 							required minlength="2" maxlength="20" />
 				</div>
 			</div>
@@ -49,7 +57,7 @@
 			<div>
 				<button type="submit" class="btn btn-primary">Update</button>
 				<button type="reset" class="btn btn-primary" value="Reset">Reset</button>
-				<button class="btn btn-primary" onclick="goBack()">Go Back</button></td>
+				<button class="btn btn-primary" onclick="goBack()">Go Back</button>
 			</div>
 		</div>
 		</form>
