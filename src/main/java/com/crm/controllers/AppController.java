@@ -1,8 +1,10 @@
 package com.crm.controllers;
 
 import com.crm.model.Leads;
+import com.crm.model.Opportunity;
 import com.crm.model.User;
 import com.crm.service.LeadRepository;
+import com.crm.service.OpportunityRepository;
 import com.crm.service.UserRepository;
 import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,10 @@ public class AppController {
 
 	@Autowired
 	private LeadRepository leadRepo;
-	
+	@Autowired
+	private OpportunityRepository opportunityRepo;
+
+
 	@GetMapping("")
 	public String viewHomePage() {
 		return "index";
@@ -155,5 +160,58 @@ public class AppController {
 		leadRepo.save(leads);
 		return "new_leads";
 	}
+
+
+	@GetMapping("/opportunity_page")
+	public String showOpportunityForm(Model model) {
+		model.addAttribute("opportunity", new Opportunity());
+
+		return "opportunity";
+	}
+	@PostMapping("/process_opportunity")
+	public String saveOpportunity(Opportunity opportunity) {
+
+
+		opportunityRepo.save(opportunity);
+
+		return "opportunity_success";
+	}
+
+	@GetMapping("/opportunities_page")
+	public String opportunityListUsers(Model model) {
+		List<Opportunity> listUsers = opportunityRepo.findAll();
+		model.addAttribute("listUsers", listUsers);
+
+		return "opportunity_list";
+	}
+
+	@RequestMapping("/load_edit_opportunity/{id}")
+	public ModelAndView showEditOpportunityPage(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_opportunity");
+		Opportunity opportunity = opportunityRepo.getOne(Math.toIntExact(Long.valueOf(id)));;
+		mav.addObject("opportunity", opportunity);
+
+		return mav;
+	}
+
+	@PostMapping("/edit_opportunity")
+	public String showEditOpportunityPage(@ModelAttribute("opportunity") Opportunity opportunityUpdated) {
+
+
+		Opportunity opportunity = opportunityRepo.getOne(Math.toIntExact(Long.valueOf(opportunityUpdated.getId())));
+		opportunity.setName(opportunityUpdated.getName());
+		opportunity.setDate(opportunityUpdated.getDate());
+
+		opportunityRepo.save(opportunity);
+
+		return "edit_success";
+	}
+
+	@RequestMapping("/delete_opportunity/{id}")
+	public String deleteOpportunity(@PathVariable(name = "id") int id) {
+		opportunityRepo.deleteById(Math.toIntExact(Long.valueOf(id)));
+		return "delete_success";
+	}
+
 
 }

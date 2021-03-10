@@ -8,11 +8,8 @@ public class Opportunity {
 
     private int id;
     private String name;
-
-
-
-
     private Date date;
+
     //   private Menmber member;
 
 
