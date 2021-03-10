@@ -1,8 +1,10 @@
 package com.crm.controllers;
 
+import com.crm.model.Activity;
 import com.crm.model.Leads;
 import com.crm.model.Opportunity;
 import com.crm.model.User;
+import com.crm.service.ActivityRepository;
 import com.crm.service.LeadRepository;
 import com.crm.service.OpportunityRepository;
 import com.crm.service.UserRepository;
@@ -29,6 +31,9 @@ public class AppController {
 	private LeadRepository leadRepo;
 	@Autowired
 	private OpportunityRepository opportunityRepo;
+
+	@Autowired
+	private ActivityRepository activityRepo;
 
 
 	@GetMapping("")
@@ -213,5 +218,26 @@ public class AppController {
 		return "delete_success";
 	}
 
+	//list all activities
+	@GetMapping("/list_activity")
+	public String showActivities(Model model) {
+		List<Activity> activityList = activityRepo.findAll();
+		model.addAttribute("list", activityList);
+		return "list_activity";
+	}
+
+	//create a new activity
+	@GetMapping("/new_activity")
+	public String showCreateActivity(Model model) {
+		model.addAttribute("activity", new Activity());
+		return "new_activity";
+	}
+
+	//new activity created successfully
+	@PostMapping("/process_activity")
+	public String createActivity(Activity activity) {
+		activityRepo.save(activity);
+		return "activity_create_success";
+	}
 
 }

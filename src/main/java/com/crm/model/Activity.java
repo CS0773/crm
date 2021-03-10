@@ -2,12 +2,14 @@ package com.crm.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name="activity_type", nullable=false)
@@ -20,7 +22,7 @@ public class Activity {
     @Column(name="status", nullable=false)
     private ActivityStatus status;
 
-    private LocalDate dueDate;
+    private Date dueDate;
 
     @OneToOne
     private Leads leadAccountName;
@@ -30,7 +32,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(int id, ActivityType activityType, User assignedTo, ActivityStatus status, LocalDate dueDate, Leads leadAccountName, String comments) {
+    public Activity(int id, ActivityType activityType, User assignedTo, ActivityStatus status, Date dueDate, Leads leadAccountName, String comments) {
         this.id = id;
         this.activityType = activityType;
         this.assignedTo = assignedTo;
@@ -72,11 +74,11 @@ public class Activity {
         this.status = status;
     }
 
-    public LocalDate getDueDate()  {
+    public Date getDueDate()  {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate)  {
+    public void setDueDate(Date dueDate)  {
         this.dueDate = dueDate;
     }
 
