@@ -239,5 +239,31 @@ public class AppController {
 		activityRepo.save(activity);
 		return "activity_create_success";
 	}
+	@RequestMapping("/edit_activity/{id}")
+	public ModelAndView showUpdateActivity(@PathVariable Integer id) {
+		ModelAndView mav = new ModelAndView("edit_activity");
+		Activity activity=activityRepo.getOne(id);
+		mav.addObject("activity",activity);
+		return mav;
+	}
+
+	@PostMapping("/process_edit_activity")
+	public String updateActivity(Activity receivedActivity) {
+		Activity activity = activityRepo.getOne(receivedActivity.getId());
+		activity.setActivityType(receivedActivity.getActivityType());
+		activity.setAccountName(receivedActivity.getLeadAccountName());
+		activity.setAssignedTo(receivedActivity.getAssignedTo());
+		activity.setDueDate(receivedActivity.getDueDate());
+		activity.setComments(receivedActivity.getComments());
+		activity.setStatus(receivedActivity.getStatus());
+		activityRepo.save(activity);
+		return "redirect:/activity_list";
+	}
+
+	@RequestMapping("/delete_activity/{id}")
+	public String deleteActivity(@PathVariable Integer id) {
+		activityRepo.deleteById(id);
+		return "redirect:/activity_list";
+	}
 
 }
