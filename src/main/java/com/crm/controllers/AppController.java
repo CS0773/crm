@@ -103,12 +103,12 @@ public class AppController {
 
 
 
-	@GetMapping("/login_success")
+	@GetMapping("/user_list")
 	public String listUsersAfterLogin(Model model) {
 		List<User> listUsers = userRepo.findAll();
 		model.addAttribute("listUsers", listUsers);
 
-		return "login_success";
+		return "user_list";
 	}
 
 
@@ -182,7 +182,7 @@ public class AppController {
 		return "opportunity_success";
 	}
 
-	@GetMapping("/opportunities_page")
+	@GetMapping("/opportunity_list")
 	public String opportunityListUsers(Model model) {
 		List<Opportunity> listUsers = opportunityRepo.findAll();
 		model.addAttribute("listUsers", listUsers);
@@ -219,11 +219,11 @@ public class AppController {
 	}
 
 	//list all activities
-	@GetMapping("/list_activity")
+	@GetMapping("/activity_list")
 	public String showActivities(Model model) {
 		List<Activity> activityList = activityRepo.findAll();
 		model.addAttribute("list", activityList);
-		return "list_activity";
+		return "activity_list";
 	}
 
 	//create a new activity

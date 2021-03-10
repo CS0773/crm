@@ -47,12 +47,12 @@ public class CRMWebSecurityConfig extends WebSecurityConfigurerAdapter {
 /*	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/login_success").authenticated()
+			.antMatchers("/user_list").authenticated()
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
 				.usernameParameter("email")
-				.defaultSuccessUrl("/login_success")
+				.defaultSuccessUrl("/user_list")
 				.permitAll()
 			.and()
 			.logout().logoutSuccessUrl("/").permitAll();
