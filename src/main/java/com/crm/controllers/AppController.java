@@ -1,7 +1,10 @@
 package com.crm.controllers;
 
+import com.crm.model.Leads;
 import com.crm.model.User;
+import com.crm.service.LeadRepository;
 import com.crm.service.UserRepository;
+import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,9 @@ public class AppController {
 
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	private LeadRepository leadRepo;
 	
 	@GetMapping("")
 	public String viewHomePage() {
@@ -126,6 +132,28 @@ public class AppController {
 	public String deleteUser(@PathVariable(name = "id") int id) {
 		userRepo.deleteById(Long.valueOf(id));
 		return "delete_success";
+	}
+
+//	listing lead
+	@GetMapping("/lead_list")
+	public String listLeads(Model model) {
+		List<Leads> listLeads = leadRepo.findAll();
+		model.addAttribute("listLeads", listLeads);
+		return "lead_list";
+	}
+
+//  lead creation
+	@RequestMapping("/new")
+	public String showNewProductPage(Model model) {
+		Leads leads = new Leads();
+		model.addAttribute("leads", leads);
+		return "new_leads";
+	}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String saveProduct(@ModelAttribute("leads") Leads leads) {
+		leadRepo.save(leads);
+		return "new_leads";
 	}
 
 }

@@ -7,9 +7,11 @@ import java.util.List;
 public class Leads {
 
     private int id;
-    private String userName;
+    private String firstName;
+    private String lastName;
     private String company;
     private String emailId;
+    private String phoneNumber;
     @Column(name="status", nullable=false)
     private LeadStatus status;
 
@@ -23,13 +25,15 @@ public class Leads {
         this.id = id;
     }
 
-
-    public Leads(int id, String userName, String company, String emailId, LeadStatus status) {
+    public Leads(int id, String firstName, String lastName, String company, String emailId, String phoneNumber, LeadStatus status, List<Product> productList) {
         this.id = id;
-        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.company = company;
         this.emailId = emailId;
+        this.phoneNumber = phoneNumber;
         this.status = status;
+        this.productList = productList;
     }
 
     @Id
@@ -42,12 +46,28 @@ public class Leads {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getCompany() {
