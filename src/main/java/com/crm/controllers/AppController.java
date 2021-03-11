@@ -241,15 +241,5 @@ public class AppController {
 	}
 
 
-	@RequestMapping("/product_list")
-	public String viewProductsHomePage(Model model) {
-		List<Product> listProducts = productRepo.findAll();
-		model.addAttribute("listProducts", listProducts);
-
-		return "product_list";
-	}
-
-
-
 
 }

@@ -1,24 +1,33 @@
 package com.crm.controllers;
 
-import java.util.*;
-
 import com.crm.model.Product;
+import com.crm.model.User;
 import com.crm.service.impl.ProductService;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.*;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+import java.util.List;
+import java.util.NoSuchElementException;
+
+@Controller
 public class ProductController {
 
     @Autowired
     private ProductService service;
 
     //1 RESTful API methods for Retrieval operations - ALL
-    @GetMapping("/products")
-    public List<Product> list() {
-        return service.listAll();
+    @RequestMapping("/product_list")
+    public String viewProductsHomePage(Model model) {
+        List<Product> listProducts = service.listAll();
+        model.addAttribute("listProducts", listProducts);
+
+        return "product_list";
     }
 
     //2 RESTful API methods for Retrieval operations - By Id
@@ -32,26 +41,59 @@ public class ProductController {
         }
     }
 
+    @RequestMapping("/new_product")
+    public String showNewProductPage(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
+
+        return "new_product";
+    }
+
     //3 RESTful API method for Create operation
-    @PostMapping("/products")
-    public void add(@RequestBody Product product) {
+    //new product created successfully
+    @PostMapping("/save_product")
+    public String add(Product product) {
         service.save(product);
+        return "product_create_success";
+    }
+
+    @RequestMapping("/edit_product/{id}")
+    public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("edit_product");
+        Product product = service.get(id);
+        mav.addObject("product", product);
+
+        return mav;
     }
 
     //4 RESTful API method for Update operation
-    @PutMapping("/products/{id}")
-    public ResponseEntity<?> update(@RequestBody Product product, @PathVariable Integer id) {
+/*    @PostMapping("/process_edit_product")
+    public ResponseEntity<?> update(@RequestBody Product productUpdates) {
         try {
-            Product existProduct = service.get(id);
-            service.save(product);
+            Product existProduct = service.get(productUpdates.getId());
+            existProduct.setName(productUpdates.getName());
+            existProduct.setPrice(productUpdates.getPrice());
+
+            service.save(existProduct);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }*/
+    @PostMapping("/process_edit_product")
+    public String updateProduct(@ModelAttribute("product") Product productUpdates) {
+        Product existProduct = service.get(productUpdates.getId());
+        existProduct.setName(productUpdates.getName());
+        existProduct.setPrice(productUpdates.getPrice());
+
+        service.save(existProduct);
+
+        return "edit_success";
     }
 
+
     //5 RESTful API method for Delete operation
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/delete_product/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
     }

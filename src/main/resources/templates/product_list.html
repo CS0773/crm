@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
     <title>Product List</title>
@@ -10,6 +9,14 @@
 </head>
 <body>
 <div class="container">
+    <div class="text-right">
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
     <div class="text-left">
         <div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;">
             <a th:href="@{/user_list}">Users</a> | &nbsp;
@@ -20,18 +27,16 @@
             <a th:href="@{/user_list}">Members</a> |
         </div>
     </div>
-
     <div align="center">
         <h3>Product List</h3>
         <a href="new_product">Create New Product</a>
-        <br/><br/>
-        <table border="1" cellpadding="10">
-            <thead>
+    </div>
+    <div class="text-center">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
                 <tr>
                     <th>Product ID</th>
                     <th>Name</th>
-                    <th>Brand</th>
-                    <th>Made In</th>
                     <th>Price</th>
                     <th>Actions</th>
                 </tr>
@@ -40,13 +45,10 @@
                 <tr th:each="product : ${listProducts}">
                     <td th:text="${product.id}">Product ID</td>
                     <td th:text="${product.name}">Name</td>
-                    <td th:text="${product.brand}">Brand</td>
-                    <td th:text="${product.madein}">Made in</td>
                     <td th:text="${product.price}">Price</td>
                     <td>
-                        <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+                        <a th:href="@{'/edit_product/' + ${product.id}}">Edit</a>
+                        <a th:href="@{'/delete_product/' + ${product.id}}">Delete</a>
                     </td>
                 </tr>
             </tbody>

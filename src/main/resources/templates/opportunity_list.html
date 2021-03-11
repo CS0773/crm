@@ -9,7 +9,14 @@
 </head>
 <body>
 <div class="container">
-
+    <div class="text-right">
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
     <div class="text-left">
         <div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;">
             <a th:href="@{/user_list}">Users</a> | &nbsp;
