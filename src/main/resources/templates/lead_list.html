@@ -23,7 +23,7 @@
     </div>
     <div align="center">
         <h3>Lead List</h3>
-        <a href="new">Create New Lead</a>
+        <a href="new_lead">Create New Lead</a>
         <br/><br/>
         <table border="1" cellpadding="10">
             <thead>
@@ -47,10 +47,9 @@
                 <td th:text="${leads.company}">Company</td>
                 <td th:text="${leads.phoneNumber}">Phone Number</td>
                 <td th:text="${leads.status}">Status</td>
-
                 <td>
-                    <a href="@{'/edit/' + ${leads.id}}">Edit</a>
-                    <a href="@{'/delete/' + ${leads.id}}">Delete</a>
+                    <a th:href="@{'/load_edit_lead/' + ${leads.id}}">Edit</a>
+                    <a th:href="@{'/delete_lead/' + ${leads.id}}">Delete</a>
                 </td>
             </tr>
             </tbody>

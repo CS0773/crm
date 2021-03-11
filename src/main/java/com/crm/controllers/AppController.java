@@ -1,13 +1,7 @@
 package com.crm.controllers;
 
-import com.crm.model.Activity;
-import com.crm.model.Leads;
-import com.crm.model.Opportunity;
-import com.crm.model.User;
-import com.crm.service.ActivityRepository;
-import com.crm.service.LeadRepository;
-import com.crm.service.OpportunityRepository;
-import com.crm.service.UserRepository;
+import com.crm.model.*;
+import com.crm.service.*;
 import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,13 +21,15 @@ public class AppController {
 	@Autowired
 	private UserRepository userRepo;
 
-	@Autowired
-	private LeadRepository leadRepo;
+
 	@Autowired
 	private OpportunityRepository opportunityRepo;
 
 	@Autowired
 	private ActivityRepository activityRepo;
+
+	@Autowired
+	private ProductRepository productRepo;
 
 
 	@GetMapping("")
@@ -144,28 +140,6 @@ public class AppController {
 		return "delete_success";
 	}
 
-//	listing lead
-	@GetMapping("/lead_list")
-	public String listLeads(Model model) {
-		List<Leads> listLeads = leadRepo.findAll();
-		model.addAttribute("listLeads", listLeads);
-		return "lead_list";
-	}
-
-//  lead creation
-	@RequestMapping("/new")
-	public String showNewProductPage(Model model) {
-		Leads leads = new Leads();
-		model.addAttribute("leads", leads);
-		return "new_leads";
-	}
-
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("leads") Leads leads) {
-		leadRepo.save(leads);
-		return "new_leads";
-	}
-
 
 	@GetMapping("/opportunity_page")
 	public String showOpportunityForm(Model model) {
@@ -265,5 +239,17 @@ public class AppController {
 		activityRepo.deleteById(id);
 		return "redirect:/activity_list";
 	}
+
+
+	@RequestMapping("/product_list")
+	public String viewProductsHomePage(Model model) {
+		List<Product> listProducts = productRepo.findAll();
+		model.addAttribute("listProducts", listProducts);
+
+		return "product_list";
+	}
+
+
+
 
 }

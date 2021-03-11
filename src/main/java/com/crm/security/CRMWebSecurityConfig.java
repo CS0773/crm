@@ -44,7 +44,7 @@ public class CRMWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
-/*	@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/user_list").authenticated()
@@ -56,12 +56,12 @@ public class CRMWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 			.and()
 			.logout().logoutSuccessUrl("/").permitAll();
-	}*/
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-				.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"*/").permitAll()
-				.antMatchers(HttpMethod.GET,"/login").permitAll();
 	}
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.csrf().disable()
+//				.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"*/").permitAll()
+//				.antMatchers(HttpMethod.GET,"/login").permitAll();
+//	}/
 	
 }

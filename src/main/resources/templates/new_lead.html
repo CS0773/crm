@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Create New Lead</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Lead</h1>
+    <br />
+    <form action="#" th:action="@{/save_lead}" th:object="${leads}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" th:field="*{firstName}" autocomplete="off"/></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" th:field="*{lastName}" autocomplete="off" /></td>
+            </tr>
+            <tr>
+                <td>Company:</td>
+                <td><input type="text" th:field="*{company}" autocomplete="off" /></td>
+            </tr>
+            <tr>
+                <td>Email Id:</td>
+                <td><input type="text" th:field="*{emailId}" autocomplete="off" /></td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" th:field="*{phoneNumber}" autocomplete="off" /></td>
+            </tr>
+            <tr>
+                <td>Status: UNQUALIFIED / NEW / INPROGRESS / CONVERTED</td>
+                <td><input type="text" th:field="*{status}" autocomplete="off" /></td></br>
+            </tr>
+                <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+                <td colspan="2"><button type="reset" value="Reset">Reset</button></td>
+                <td colspan="2"><button onclick="goBack()">Go Back</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
