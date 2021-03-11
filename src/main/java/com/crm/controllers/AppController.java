@@ -110,12 +110,12 @@ public class AppController {
 
 
 
-	@GetMapping("/login_success")
+	@GetMapping("/user_list")
 	public String listUsersAfterLogin(Model model) {
 		List<User> listUsers = userRepo.findAll();
 		model.addAttribute("listUsers", listUsers);
 
-		return "login_success";
+		return "user_list";
 	}
 
 
