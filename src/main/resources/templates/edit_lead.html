@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td>Email Id:</td>
-                <td><input type="text" th:field="*{emailId}" autocomplete="off"/></td>
+                <td><input type="email" th:field="*{emailId}" autocomplete="off"/></td>
             </tr>
             <tr>
                 <td>Phone Number:</td>
@@ -61,5 +61,10 @@
         </table>
     </form>
 </div>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 </body>
 </html>
