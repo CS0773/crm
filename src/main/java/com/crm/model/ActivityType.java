@@ -6,5 +6,7 @@ public enum ActivityType {
     EMAIL,
     TASK,
     MEETING,
-    TEXT_MESSAGE
+    APPOINTMENT,
+    TEXT_MESSAGE;
+
 }

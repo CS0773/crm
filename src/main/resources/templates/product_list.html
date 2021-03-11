@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Opportunity List</title>
+    <title>Product List</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
@@ -27,38 +27,30 @@
             <a th:href="@{/user_list}">Members</a> |
         </div>
     </div>
-    <div class="text-left">
-        <h1>Opportunity List</h1>
+    <div align="center">
+        <h3>Product List</h3>
+        <a href="new_product">Create New Product</a>
     </div>
-    <div class="text-right">
-        <h3></h3>
-        <a th:href="@{/opportunity_page}">Create New Opportunity</a>			&nbsp;&nbsp;&nbsp;
-    </div>
-
-
     <div class="text-center">
         <table class="table table-striped table-bordered">
-            <thead class="thread-dark">
-            <tr>
-                <th>User ID</th>
-                <th>Name </th>
-                <th>Close Date</th>
-                <th>Actions</th>
-
-            </tr>
+            <thead class="thead-dark">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="user: ${listUsers}">
-                <td th:text="${user.id}">User ID</td>
-                <td th:text="${user.name}">Name</td>
-                <td th:text="${user.date}">Close Date</td>
-                <td>
-                    <!--						<a th:href="@{/edit_user}">Edit</a>-->
-                    <a th:href="@{'/load_edit_opportunity/' + ${user.id}}">Edit</a>
-                    <a th:href="@{'/delete_opportunity/' + ${user.id}}" onclick="goBack()">Delete</a>
-                </td>
-
-            </tr>
+                <tr th:each="product : ${listProducts}">
+                    <td th:text="${product.id}">Product ID</td>
+                    <td th:text="${product.name}">Name</td>
+                    <td th:text="${product.price}">Price</td>
+                    <td>
+                        <a th:href="@{'/edit_product/' + ${product.id}}">Edit</a>
+                        <a th:href="@{'/delete_product/' + ${product.id}}">Delete</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

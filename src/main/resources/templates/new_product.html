@@ -1,42 +1,44 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8" />
-<title>Create New Product</title>
+	<meta charset="ISO-8859-1">
+	<title>Create New Product</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container text-center">
 	<div align="center">
 		<h1>Create New Product</h1>
-		<br />
-		<form action="#" th:action="@{/save}" th:object="${product}"
-			method="post">
-
-			<table border="0" cellpadding="10">
-				<tr>
-					<td>Product Name:</td>
-					<td><input type="text" th:field="*{name}" /></td>
-				</tr>
-				<tr>
-					<td>Brand:</td>
-					<td><input type="text" th:field="*{brand}" /></td>
-				</tr>
-				<tr>
-					<td>Made In:</td>
-					<td><input type="text" th:field="*{madein}" /></td>
-				</tr>
-				<tr>
-					<td>Price:</td>
-					<td><input type="text" th:field="*{price}" /></td>
-				</tr>								
-				<tr>
-					<td colspan="2"><button type="submit">Save</button> </td>
-					<td colspan="2"><button type="reset" value="Reset">Reset</button></td>
-					<td colspan="2"><button onclick="goBack()">Go Back</button></td>
-				</tr>
-			</table>
-		</form>
 	</div>
+		<form  th:action="@{/save_product}" th:object="${product}"
+			method="post" style="max-width: 600px; margin: 0 auto;">
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Product Name: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{name}" class="form-control" autocomplete="off"
+							   required minlength="2" maxlength="20"/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Product Price: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{price}" class="form-control" autocomplete="off"
+							   required minlength="2" maxlength="20"/>
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="reset" class="btn btn-primary" value="Reset">Reset</button>
+					<button class="btn btn-primary" onclick="goBack()">Go Back</button>
+				</div>
+			</div>
+		</form>
+
+</div>
 <script>
 function goBack() {
   window.history.back();

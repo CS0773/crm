@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Create Activity</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>Create New Activity</h1>
+    </div>
+    <form th:action="@{/process_activity}" th:object="${activity}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Type : </label>
+                <div class="col-8">
+                    <!--<input type="text" th:field="*{activityType}" class="form-control"  />-->
+                    <select th:field="*{activityType}" class="form-control">
+                        <option value = "CALL"> Call</option>
+                        <option value = "EMAIL"> E-Mail</option>
+                        <option value = "TASK"> Task</option>
+                        <option value = "MEETING"> Meeting</option>
+                        <option value = "APPOINTMENT">Appointment</option>
+                        <option value = "TEXT_MESSAGE"> Text Message</option>
+                    </select>
+
+
+                    <!--<select  name="activityType" th:field="*{activityType}" class="form-control" >
+                        <option th:each="activityType : ${T(com.crm.model.ActivityType.values()}"
+                                th:value="${activityType}" th:text="${activityType}"></option>
+                    </select>-->
+                 </div>
+            </div>
+
+        <!--    <div class="form-group row">
+                <label class="col-4 col-form-label">Account Name : </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{leadAccountName}" class="form-control"/>
+                </div>
+            </div>-->
+
+        <!--    <div class="form-group row">
+                <label class="col-4 col-form-label">Assigned To : </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{assignedTo}" class="form-control"/>
+                </div>
+            </div>-->
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Due Date : </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{dueDate}" class="form-control" placeholder="mm/dd/yyyy"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Status : </label>
+                <div class="col-8">
+                   <!-- <input type="text" th:field="*{status}" class="form-control"/>-->
+                    <select th:field="*{status}" class="form-control">
+                        <option value = "NOT_STARTED">Not Started</option>
+                        <option value = "IN_PROGRESS">In Progress</option>
+                        <option value = "COMPLETED">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Comments : </label>
+                <div class="col-8" >
+                    <input type="text" th:field="*{comments}" class="form-control" />
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Create Activity</button>
+                <button type="reset" class="btn btn-primary" value="Reset">Reset</button>
+                <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>

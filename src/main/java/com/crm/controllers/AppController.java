@@ -8,6 +8,8 @@ import com.crm.service.LeadRepository;
 import com.crm.service.MemberRepository;
 import com.crm.service.OpportunityRepository;
 import com.crm.service.UserRepository;
+import com.crm.model.*;
+import com.crm.service.*;
 import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,13 +29,18 @@ public class AppController {
 	@Autowired
 	private UserRepository userRepo;
 
-	@Autowired
-	private LeadRepository leadRepo;
+
 	@Autowired
 	private OpportunityRepository opportunityRepo;
 
 	@Autowired
 	private MemberRepository memberRepo;
+
+	@Autowired
+	private ActivityRepository activityRepo;
+
+	@Autowired
+	private ProductRepository productRepo;
 
 
 	@GetMapping("")
@@ -144,28 +151,6 @@ public class AppController {
 		return "delete_success";
 	}
 
-//	listing lead
-	@GetMapping("/lead_list")
-	public String listLeads(Model model) {
-		List<Leads> listLeads = leadRepo.findAll();
-		model.addAttribute("listLeads", listLeads);
-		return "lead_list";
-	}
-
-//  lead creation
-	@RequestMapping("/new")
-	public String showNewProductPage(Model model) {
-		Leads leads = new Leads();
-		model.addAttribute("leads", leads);
-		return "new_leads";
-	}
-
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("leads") Leads leads) {
-		leadRepo.save(leads);
-		return "new_leads";
-	}
-
 
 	@GetMapping("/opportunity_page")
 	public String showOpportunityForm(Model model) {
@@ -270,6 +255,55 @@ public class AppController {
 		memberRepo.deleteById(Math.toIntExact(Long.valueOf(id)));
 		return "delete_success";
 	}
+
+	//list all activities
+	@GetMapping("/activity_list")
+	public String showActivities(Model model) {
+		List<Activity> activityList = activityRepo.findAll();
+		model.addAttribute("list", activityList);
+		return "activity_list";
+	}
+
+	//create a new activity
+	@GetMapping("/new_activity")
+	public String showCreateActivity(Model model) {
+		model.addAttribute("activity", new Activity());
+		return "new_activity";
+	}
+
+	//new activity created successfully
+	@PostMapping("/process_activity")
+	public String createActivity(Activity activity) {
+		activityRepo.save(activity);
+		return "activity_create_success";
+	}
+	@RequestMapping("/edit_activity/{id}")
+	public ModelAndView showUpdateActivity(@PathVariable Integer id) {
+		ModelAndView mav = new ModelAndView("edit_activity");
+		Activity activity=activityRepo.getOne(id);
+		mav.addObject("activity",activity);
+		return mav;
+	}
+
+	@PostMapping("/process_edit_activity")
+	public String updateActivity(Activity receivedActivity) {
+		Activity activity = activityRepo.getOne(receivedActivity.getId());
+		activity.setActivityType(receivedActivity.getActivityType());
+		activity.setAccountName(receivedActivity.getLeadAccountName());
+		activity.setAssignedTo(receivedActivity.getAssignedTo());
+		activity.setDueDate(receivedActivity.getDueDate());
+		activity.setComments(receivedActivity.getComments());
+		activity.setStatus(receivedActivity.getStatus());
+		activityRepo.save(activity);
+		return "redirect:/activity_list";
+	}
+
+	@RequestMapping("/delete_activity/{id}")
+	public String deleteActivity(@PathVariable Integer id) {
+		activityRepo.deleteById(id);
+		return "redirect:/activity_list";
+	}
+
 
 
 }

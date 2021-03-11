@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Opportunity List</title>
+    <title>Activity List</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
@@ -27,41 +27,49 @@
             <a th:href="@{/user_list}">Members</a> |
         </div>
     </div>
-    <div class="text-left">
-        <h1>Opportunity List</h1>
-    </div>
-    <div class="text-right">
-        <h3></h3>
-        <a th:href="@{/opportunity_page}">Create New Opportunity</a>			&nbsp;&nbsp;&nbsp;
+    <div  align="center">
+        <h3>Activity List</h3>&nbsp;&nbsp;&nbsp;
+        <a th:href="@{/new_activity}">Create New Activity</a>
     </div>
 
 
     <div class="text-center">
         <table class="table table-striped table-bordered">
-            <thead class="thread-dark">
+            <thead class="thead-dark">
             <tr>
-                <th>User ID</th>
-                <th>Name </th>
-                <th>Close Date</th>
+                <th>Activity Id</th>
+                <th>Type</th>
+            <!--    <th>Account Name</th>
+                <th>Assigned To</th>-->
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Comments</th>
                 <th>Actions</th>
-
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user: ${listUsers}">
-                <td th:text="${user.id}">User ID</td>
-                <td th:text="${user.name}">Name</td>
-                <td th:text="${user.date}">Close Date</td>
+            <tr th:each="activity : ${list}">
+                <td th:text="${activity.id}">Activity Id</td>
+                <td th:text="${activity.activityType}">Type</td>
+            <!--    <td th:text="${activity.leadAccountName}">Account Name</td>
+                <td th:text="${activity.assignedTo}">Assigned To</td>-->
+                <td th:text="${activity.dueDate}">Due Date</td>
+                <td th:text="${activity.status}">Status</td>
+                <td th:text="${activity.comments}">Comments</td>
                 <td>
-                    <!--						<a th:href="@{/edit_user}">Edit</a>-->
-                    <a th:href="@{'/load_edit_opportunity/' + ${user.id}}">Edit</a>
-                    <a th:href="@{'/delete_opportunity/' + ${user.id}}" onclick="goBack()">Delete</a>
+                    <a th:href="@{'/edit_activity/' + ${activity.id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete_activity/' + ${activity.id}}">Delete</a>
                 </td>
-
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 </body>
 </html>
