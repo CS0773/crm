@@ -51,7 +51,7 @@ public class LeadsController {
 
     @PostMapping("/process_edit_lead")
         public String editLeadsPage(@ModelAttribute("leads") Leads leads) {
-        System.out.println("successs");
+//        System.out.println("successs");
             Leads leads1 = leadRepo.getOne(Math.toIntExact(Long.valueOf(leads.getId())));
             leads1.setFirstName(leads.getFirstName());
             leads1.setLastName(leads.getLastName());
