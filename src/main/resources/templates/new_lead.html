@@ -38,8 +38,16 @@
             </tr>
             <tr>
                 <td>Status:</td>
-                <td><input type="text" th:field="*{status}" autocomplete="off"/></td>
-                <td>Only enter UNQUALIFIED / NEW / INPROGRESS / CONVERTED<td/>
+<!--                <td><input type="text" th:field="*{status}" autocomplete="off"/></td>-->
+<!--                <td>Only enter UNQUALIFIED / NEW / INPROGRESS / CONVERTED<td/>-->
+                <td><input type="text" th:field="*{status}" class="form-control" list="*{status}" name="status" />
+                    <datalist id="*{status}">
+                        <option value="UNQUALIFIED">
+                        <option value="NEW">
+                        <option value="INPROGRESS">
+                        <option value="CONVERTED">
+                    </datalist>
+                </td>
             </tr>
                 <tr>
                 <td colspan="2"><button type="submit">Save</button> </td>

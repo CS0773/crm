@@ -12,7 +12,7 @@
 <div align="center">
     <h1>Update Leads</h1>
     <br />
-    <form action="#" th:action="@{/process_edit_lead}" th:object="${leads}"
+    <form th:action="@{/process_edit_lead}" th:object="${leads}"
           method="post">
 
         <table border="0" cellpadding="10">
@@ -42,8 +42,16 @@
             </tr>
             <tr>
                 <td>Status:</td>
-                <td><input type="text" th:field="*{status}" autocomplete="off" /></td>
-                <td>Only enter UNQUALIFIED / NEW / INPROGRESS / CONVERTED<td/>
+<!--                <td><input type="text" th:field="*{status}" autocomplete="off" /></td>-->
+<!--                <td>Only enter UNQUALIFIED / NEW / INPROGRESS / CONVERTED<td/>-->
+                <td><input type="text" th:field="*{status}" class="form-control" list="*{status}" name="status" />
+                <datalist id="*{status}">
+                    <option value="UNQUALIFIED">
+                    <option value="NEW">
+                    <option value="INPROGRESS">
+                    <option value="CONVERTED">
+                </datalist>
+                </td>
             </tr>
                 <tr>
                 <td colspan="2"><button type="submit">Save</button> </td>

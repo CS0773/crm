@@ -1,6 +1,7 @@
 package com.crm.controllers;
 
 import com.crm.model.Leads;
+import com.crm.service.LeadRepository;
 import com.crm.service.impl.LeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,8 @@ public class LeadsController {
 
     @Autowired
     private LeadService leadService;
-
+    @Autowired
+    private LeadRepository leadRepo;
     //	listing lead
     @GetMapping("/lead_list")
     public String listLeads(Model model) {
@@ -48,23 +50,24 @@ public class LeadsController {
     }
 
     @PostMapping("/process_edit_lead")
-    public String updateLead(Leads updatedLead) {
-        Leads existingLead = leadService.get(updatedLead.getId());
-        existingLead.setFirstName(updatedLead.getFirstName());
-        existingLead.setLastName(updatedLead.getLastName());
-        existingLead.setCompany(updatedLead.getCompany());
-        existingLead.setEmailId(updatedLead.getEmailId());
-        existingLead.setPhoneNumber(updatedLead.getPhoneNumber());
-        existingLead.setStatus(updatedLead.getStatus());
-        existingLead.setProductList(updatedLead.getProductList());
-        leadService.save(existingLead);
-        return "redirect:/lead_list";
-    }
+        public String editLeadsPage(@ModelAttribute("leads") Leads leads) {
+        System.out.println("successs");
+            Leads leads1 = leadRepo.getOne(Math.toIntExact(Long.valueOf(leads.getId())));
+            leads1.setFirstName(leads.getFirstName());
+            leads1.setLastName(leads.getLastName());
+            leads1.setCompany(leads.getCompany());
+            leads1.setEmailId(leads.getEmailId());
+            leads1.setPhoneNumber(leads.getPhoneNumber());
+            leads1.setStatus(leads.getStatus());
+            leadRepo.save(leads1);
+            return "edit_lead_success";
+        }
+
 
     @RequestMapping("/delete_lead/{id}")
     public String deleteLead(@PathVariable(name = "id") int id) {
-        leadService.delete(id);
-        return "redirect:/lead_list";
+        leadRepo.deleteById(Math.toIntExact(Long.valueOf(id)));
+        return "delete_success";
     }
 
     @RequestMapping("/convert_lead/{id}")
