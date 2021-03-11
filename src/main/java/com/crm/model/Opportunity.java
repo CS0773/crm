@@ -1,6 +1,6 @@
 package com.crm.model;
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "Opportunity")
@@ -8,15 +8,15 @@ public class Opportunity {
 
     private int id;
     private String name;
-    private Date date;
+    private String closedate;
 
     //   private Menmber member;
 
 
-    public Opportunity(int id, String name, Date date) {
+    public Opportunity(int id, String name, String closedate) {
         this.id = id;
         this.name = name;
-        this.date = date;
+        this.closedate = closedate;
     }
 
     public Opportunity() {
@@ -49,12 +49,12 @@ public class Opportunity {
         this.closeDate = closeDate;
     } */
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        return closedate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(String closedate) {
+        this.closedate = closedate;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Opportunity {
                 "id=" + id +
                 ", name='" + name + '\'' +
 
-                ", date=" + date +
+                ", closedate=" + closedate +
                 '}';
     }
 

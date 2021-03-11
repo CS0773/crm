@@ -1,9 +1,11 @@
 package com.crm.controllers;
 
 import com.crm.model.Leads;
+import com.crm.model.Member;
 import com.crm.model.Opportunity;
 import com.crm.model.User;
 import com.crm.service.LeadRepository;
+import com.crm.service.MemberRepository;
 import com.crm.service.OpportunityRepository;
 import com.crm.service.UserRepository;
 import org.apache.catalina.Store;
@@ -29,6 +31,9 @@ public class AppController {
 	private LeadRepository leadRepo;
 	@Autowired
 	private OpportunityRepository opportunityRepo;
+
+	@Autowired
+	private MemberRepository memberRepo;
 
 
 	@GetMapping("")
@@ -177,7 +182,7 @@ public class AppController {
 		return "opportunity_success";
 	}
 
-	@GetMapping("/opportunities_page")
+	@GetMapping("/opportunity_list")
 	public String opportunityListUsers(Model model) {
 		List<Opportunity> listUsers = opportunityRepo.findAll();
 		model.addAttribute("listUsers", listUsers);
@@ -204,12 +209,65 @@ public class AppController {
 
 		opportunityRepo.save(opportunity);
 
-		return "edit_success";
+		return "opportunity_update_success";
 	}
 
 	@RequestMapping("/delete_opportunity/{id}")
 	public String deleteOpportunity(@PathVariable(name = "id") int id) {
 		opportunityRepo.deleteById(Math.toIntExact(Long.valueOf(id)));
+		return "delete_success";
+	}
+
+	@GetMapping("/member_list")
+	public String listMember(Model model) {
+		List<Member> listMember = memberRepo.findAll();
+		model.addAttribute("listMember", listMember);
+		return "member_list";
+	}
+
+
+
+	@GetMapping("/create_member")
+	public String showMemberForm(Model model) {
+		model.addAttribute("member", new Member());
+
+		return "create_member";
+	}
+	@PostMapping("/process_member")
+	public String saveMember(Member member) {
+
+
+		memberRepo.save(member);
+
+		return "member_succes";
+	}
+
+
+	@RequestMapping("/load_edit_member/{id}")
+	public ModelAndView showEditMemberPage(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_member");
+		 Member member = memberRepo.getOne(Math.toIntExact(Long.valueOf(id)));;
+		mav.addObject("member", member);
+
+		return mav;
+	}
+
+	@PostMapping("/edit_member")
+	public String showEditMemberPage(@ModelAttribute("member") Member memberUpdated) {
+
+
+		Member member = memberRepo.getOne(Math.toIntExact(Long.valueOf(memberUpdated.getId())));
+		member.setAccname(memberUpdated.getAccname());
+		member.setAccno(memberUpdated.getAccno());
+
+		memberRepo.save(member);
+
+		return "member_update_success";
+	}
+
+	@RequestMapping("/delete_member/{id}")
+	public String deleteMember(@PathVariable(name = "id") int id) {
+		memberRepo.deleteById(Math.toIntExact(Long.valueOf(id)));
 		return "delete_success";
 	}
 
