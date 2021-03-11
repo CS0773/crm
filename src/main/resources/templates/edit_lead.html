@@ -41,14 +41,14 @@
                 <td><input type="text" th:field="*{phoneNumber}" autocomplete="off"/></td>
             </tr>
             <tr>
-                <td>Status: UNQUALIFIED / NEW / INPROGRESS / CONVERTED</td>
-                <td><input type="text" th:field="*{status}" autocomplete="off" /></td></br>
+                <td>Status:</td>
+                <td><input type="text" th:field="*{status}" autocomplete="off" /></td>
+                <td>Only enter UNQUALIFIED / NEW / INPROGRESS / CONVERTED<td/>
             </tr>
                 <tr>
                 <td colspan="2"><button type="submit">Save</button> </td>
                 <td colspan="2"><button type="reset" value="Reset">Reset</button></td>
                 <td colspan="2"><button onclick="goBack()">Go Back</button></td>
-                <td colspan="2"><button value="Convert Lead">Convert Lead</button></td>
             </tr>
         </table>
     </form>

@@ -5,6 +5,7 @@ import com.crm.model.LeadStatus;
 import com.crm.model.Leads;
 import com.crm.model.Product;
 import com.crm.service.LeadRepository;
+import com.crm.service.impl.LeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +19,12 @@ import java.util.List;
 public class LeadsController {
 
     @Autowired
-    private LeadRepository leadRepo;
+    private LeadService leadService;
 
     //	listing lead
     @GetMapping("/lead_list")
     public String listLeads(Model model) {
-        List<Leads> listLeads = leadRepo.findAll();
+        List<Leads> listLeads = leadService.listAll();
         model.addAttribute("listLeads", listLeads);
         return "lead_list";
     }
@@ -38,7 +39,7 @@ public class LeadsController {
 
     @RequestMapping(value = "/save_lead", method = RequestMethod.POST)
     public String saveLead(@ModelAttribute("leads") Leads leads) {
-        leadRepo.save(leads);
+        leadService.save(leads);
         return "redirect:/lead_list";
     }
 
@@ -46,14 +47,14 @@ public class LeadsController {
     @RequestMapping("/load_edit_lead/{id}")
     public ModelAndView showEditLeadPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_lead");
-        Leads leads = leadRepo.getOne(id);
+        Leads leads = leadService.get(id);
         mav.addObject("leads", leads);
         return mav;
     }
 
     @PostMapping("/process_edit_lead")
     public String updateLead(Leads updatedLead) {
-        Leads existingLead = leadRepo.getOne(updatedLead.getId());
+        Leads existingLead = leadService.get(updatedLead.getId());
         existingLead.setFirstName(updatedLead.getFirstName());
         existingLead.setLastName(updatedLead.getLastName());
         existingLead.setCompany(updatedLead.getCompany());
@@ -61,14 +62,19 @@ public class LeadsController {
         existingLead.setPhoneNumber(updatedLead.getPhoneNumber());
         existingLead.setStatus(updatedLead.getStatus());
         existingLead.setProductList(updatedLead.getProductList());
-        leadRepo.save(existingLead);
+        leadService.save(existingLead);
         return "redirect:/lead_list";
     }
 
     @RequestMapping("/delete_lead/{id}")
     public String deleteLead(@PathVariable(name = "id") int id) {
-        leadRepo.deleteById(id);
+        leadService.delete(id);
         return "redirect:/lead_list";
     }
 
+    @RequestMapping("/convert_lead/{id}")
+    public String convertLead(@PathVariable(name = "id") int id) {
+        leadService.convertLead(id);
+        return "redirect:/lead_list";
+    }
 }
