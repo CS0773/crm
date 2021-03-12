@@ -22,15 +22,15 @@
             </tr>
             <tr>
                 <td>First Name:</td>
-                <td><input type="text" th:field="*{firstName}" autocomplete="off" /></td>
+            <td><input type="text" th:field="*{firstName}" autocomplete="off" required minlength="3" maxlength="12"/></td>
             </tr>
             <tr>
                 <td>Last Name:</td>
-                <td><input type="text" th:field="*{lastName}" autocomplete="off"/></td>
+                <td><input type="text" th:field="*{lastName}" autocomplete="off" required minlength="3" maxlength="12"/></td>
             </tr>
             <tr>
                 <td>Company:</td>
-                <td><input type="text" th:field="*{company}" autocomplete="off" /></td>
+                <td><input type="text" th:field="*{company}" autocomplete="off" required minlength="3" maxlength="12" /></td>
             </tr>
             <tr>
                 <td>Email Id:</td>
@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <td>Phone Number:</td>
-                <td><input type="text" th:field="*{phoneNumber}" autocomplete="off"/></td>
+                <td><input type="text" pattern="^\d{10}$" th:field="*{phoneNumber}" autocomplete="off"/></td>
             </tr>
             <tr>
                 <td>Status:</td>

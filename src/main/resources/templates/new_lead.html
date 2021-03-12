@@ -30,11 +30,11 @@
             </tr>
             <tr>
                 <td>Email Id:</td>
-                <td><input type="email" th:field="*{emailId}" autocomplete="off" /></td>
+                <td><input type="email" th:field="*{emailId}" autocomplete="off" required /></td>
             </tr>
             <tr>
                 <td>Phone Number:</td>
-                <td><input type="text" th:field="*{phoneNumber}" autocomplete="off" /></td>
+                <td><input type="text"pattern="^\d{10}$" th:field="*{phoneNumber}" required autocomplete="off" /></td>
             </tr>
             <tr>
                 <td>Status:</td>
