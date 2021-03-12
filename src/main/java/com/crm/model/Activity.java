@@ -22,7 +22,7 @@ public class Activity {
     @Column(name="status", nullable=false)
     private ActivityStatus status;
 
-    private Date dueDate;
+    private String dueDate;
 
     @OneToOne
     private Leads leadAccountName;
@@ -32,7 +32,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(int id, ActivityType activityType, User assignedTo, ActivityStatus status, Date dueDate, Leads leadAccountName, String comments) {
+    public Activity(int id, ActivityType activityType, User assignedTo, ActivityStatus status, String dueDate, Leads leadAccountName, String comments) {
         this.id = id;
         this.activityType = activityType;
         this.assignedTo = assignedTo;
@@ -74,11 +74,11 @@ public class Activity {
         this.status = status;
     }
 
-    public Date getDueDate()  {
+    public String getDueDate()  {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate)  {
+    public void setDueDate(String dueDate)  {
         this.dueDate = dueDate;
     }
 

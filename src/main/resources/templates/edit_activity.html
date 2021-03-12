@@ -61,8 +61,7 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Due Date : </label>
                 <div class="col-8">
-                    <input type="text" th:field="*{dueDate}" class="form-control" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" placeholder="mm/dd/yyyy" required/>
-                    <td>Re-enter the date in mm/dd/yyyy format</td>
+                    <input type="date" th:field="*{dueDate}" class="form-control" placeholder="dd/mm/yyyy"/>
                 </div>
             </div>
             <div class="form-group row">
