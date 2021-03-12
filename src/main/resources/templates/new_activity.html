@@ -35,19 +35,27 @@
                  </div>
             </div>
 
-        <!--    <div class="form-group row">
-                <label class="col-4 col-form-label">Account Name : </label>
+            <div class="form-group row" th:object="${leads}">
+                <label class="col-4 col-form-label">Lead  : </label>
                 <div class="col-8">
-                    <input type="text" th:field="*{leadAccountName}" class="form-control"/>
+                    <select  class="form-control" th:field="${activity.leadAccountName.id}">
+                        <option   th:each="lead : ${leads}"
+                                  th:value="${lead.id}"
+                                  th:text="${lead.id}+' : '+${lead.firstName} +'  '+${lead.lastName}"></option>
+                    </select>
                 </div>
-            </div>-->
+            </div>
 
-        <!--    <div class="form-group row">
+            <div class="form-group row" th:object="${users}">
                 <label class="col-4 col-form-label">Assigned To : </label>
                 <div class="col-8">
-                    <input type="text" th:field="*{assignedTo}" class="form-control"/>
+                    <select class="form-control" th:field="${activity.assignedTo.id}">
+                        <option  th:each="user : ${users}"
+                                 th:value="${user.id}"
+                                 th:text="${user.id}+' : '+${user.firstName} + ' ' + ${user.lastName}"></option>
+                    </select>
                 </div>
-            </div>-->
+            </div>
 
             <div class="form-group row">
                 <label class="col-4 col-form-label">Due Date : </label>

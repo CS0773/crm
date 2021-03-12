@@ -86,7 +86,7 @@ public class Activity {
         return leadAccountName;
     }
 
-    public void setAccountName(Leads leadAccountName) {
+    public void setLeadAccountName(Leads leadAccountName) {
         this.leadAccountName = leadAccountName;
     }
 

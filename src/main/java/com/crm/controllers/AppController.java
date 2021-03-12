@@ -42,6 +42,9 @@ public class AppController {
 	@Autowired
 	private ProductRepository productRepo;
 
+	@Autowired
+	private LeadRepository leadRepo;
+
 
 	@GetMapping("")
 	public String viewHomePage() {
@@ -268,6 +271,10 @@ public class AppController {
 	@GetMapping("/new_activity")
 	public String showCreateActivity(Model model) {
 		model.addAttribute("activity", new Activity());
+		List<Leads> leads = leadRepo.findAll();
+		model.addAttribute("leads", leads);
+		List<User> users = userRepo.findAll();
+		model.addAttribute("users",users);
 		return "new_activity";
 	}
 
@@ -282,6 +289,10 @@ public class AppController {
 		ModelAndView mav = new ModelAndView("edit_activity");
 		Activity activity=activityRepo.getOne(id);
 		mav.addObject("activity",activity);
+		List<Leads> leads = leadRepo.findAll();
+		mav.addObject("leads", leads);
+		List<User> users = userRepo.findAll();
+		mav.addObject("users",users);
 		return mav;
 	}
 
@@ -289,7 +300,7 @@ public class AppController {
 	public String updateActivity(Activity receivedActivity) {
 		Activity activity = activityRepo.getOne(receivedActivity.getId());
 		activity.setActivityType(receivedActivity.getActivityType());
-		activity.setAccountName(receivedActivity.getLeadAccountName());
+		activity.setLeadAccountName(receivedActivity.getLeadAccountName());
 		activity.setAssignedTo(receivedActivity.getAssignedTo());
 		activity.setDueDate(receivedActivity.getDueDate());
 		activity.setComments(receivedActivity.getComments());
