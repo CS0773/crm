@@ -14,6 +14,7 @@ import java.util.List;
 @Controller
 public class LeadsController {
 
+//    private JavaConsole javaConsole = new JavaConsole();
     @Autowired
     private LeadService leadService;
     @Autowired
@@ -23,6 +24,9 @@ public class LeadsController {
     public String listLeads(Model model) {
         List<Leads> listLeads = leadService.listAll();
         model.addAttribute("listLeads", listLeads);
+
+//        javaConsole.logForEvent(LeadsController.class,"listLeads", "LIST LEAD success !");
+
         return "lead_list";
     }
 
@@ -37,6 +41,9 @@ public class LeadsController {
     @RequestMapping(value = "/save_lead", method = RequestMethod.POST)
     public String saveLead(@ModelAttribute("leads") Leads leads) {
         leadService.save(leads);
+
+//        javaConsole.logForEvent(LeadsController.class,"saveLead", "CREATE LEAD success !");
+
         return "redirect:/lead_list";
     }
 
@@ -73,6 +80,6 @@ public class LeadsController {
     @RequestMapping("/convert_lead/{id}")
     public String convertLead(@PathVariable(name = "id") int id) {
         leadService.convertLead(id);
-        return "redirect:/lead_list";
+        return "convert_success";
     }
 }
