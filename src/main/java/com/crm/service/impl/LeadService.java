@@ -56,14 +56,14 @@ public class LeadService {
 
 		// STEP 3 Create new Member
 		Member member = new Member();
-		member.setAccname(leads.getFirstName() + " " + leads.getLastName() + " Opportunity "+getRandomNumber(1,100));
+		member.setAccname(leads.getFirstName() + " " + leads.getLastName() + " - CONVERTED "+getRandomNumber(1,100));
 		member.setAccno(getRandomNumber(1,100000));
 //		member.setLead(leads);
 		memberRepository.save(member);
 
 		// STEP 2 Create new Opportunity
 		Opportunity opportunity = new Opportunity();
-		opportunity.setName(leads.getFirstName() + " " + leads.getLastName() + " Opportunity "+getRandomNumber(1,100));
+		opportunity.setName(leads.getFirstName() + " " + leads.getLastName() + " - CONVERTED "+getRandomNumber(1,100));
 		opportunity.setDate(new Date().toString());
 //		opportunity.setMember(member);
 		opportunityRepo.save(opportunity);
