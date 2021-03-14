@@ -1,16 +1,15 @@
 package com.crm.service.impl;
 
-import com.crm.model.LeadStatus;
-import com.crm.model.Leads;
-import com.crm.model.Member;
-import com.crm.model.Opportunity;
+import com.crm.model.*;
 import com.crm.service.LeadRepository;
 import com.crm.service.MemberRepository;
 import com.crm.service.OpportunityRepository;
+import com.crm.service.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +26,9 @@ public class LeadService {
 	@Autowired
 	private OpportunityRepository opportunityRepo;
 
+	@Autowired
+	private ProductRepository productRepository;
+
 
 	public List<Leads> listAll() {
 		return repo.findAll();
@@ -39,7 +41,21 @@ public class LeadService {
 	public Leads get(int id) {
 		return repo.findById(id).get();
 	}
-	
+	public List<Product> getAllProduct() {
+		return (productRepository.findAll());
+	}
+	@Transactional
+	public void getByName(Leads leads) {
+//		System.out.println("addingg");
+		List<Product> addList = new ArrayList<>();
+		for (Product p:leads.getProductList()) {
+			addList.add(productRepository.findByName(p.getName()));
+//			addList.forEach(s-> System.out.println(s.getName()));
+		}
+		Leads leads1=repo.getOne(leads.getId());
+		leads1.setProductList(addList);
+		repo.save(leads1);
+	}
 	public void delete(int id) {
 		repo.deleteById(id);
 	}

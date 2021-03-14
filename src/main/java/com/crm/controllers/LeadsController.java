@@ -1,6 +1,7 @@
 package com.crm.controllers;
 
 import com.crm.model.Leads;
+import com.crm.model.Product;
 import com.crm.service.LeadRepository;
 import com.crm.service.impl.LeadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,9 @@ public class LeadsController {
     public ModelAndView showEditLeadPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_lead");
         Leads leads = leadService.get(id);
+        List<Product> product= leadService.getAllProduct();
         mav.addObject("leads", leads);
+        mav.addObject("productList",product);
         return mav;
     }
 
@@ -67,6 +70,7 @@ public class LeadsController {
             leads1.setPhoneNumber(leads.getPhoneNumber());
             leads1.setStatus(leads.getStatus());
             leadRepo.save(leads1);
+             leadService.getByName(leads);
             return "edit_lead_success";
         }
 
