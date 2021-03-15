@@ -54,10 +54,18 @@
                 </td>
             </tr>
             <tr>
-                <td>Products</td>
+                <td>CRM Products</td>
                 <td>
                     <select name="productList" class="form-control select-checkbox" multiple>
                         <option th:each="product : ${productList}"
+                                th:value="${product.id}"
+                                th:text="${product.name}"></option>
+                    </select>
+                </td>
+                <td>Products Selected</td>
+                <td>
+                    <select name="productList" class="form-control select-checkbox" multiple>
+                        <option th:each="product : ${leads.productList}"
                                 th:value="${product.id}"
                                 th:text="${product.name}"></option>
                     </select>
