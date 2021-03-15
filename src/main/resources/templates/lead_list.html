@@ -43,6 +43,7 @@
                 <th>Company</th>
                 <th>Phone Number</th>
                 <th>Status</th>
+                <th>Products</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -55,6 +56,19 @@
                 <td th:text="${leads.company}">Company</td>
                 <td th:text="${leads.phoneNumber}">Phone Number</td>
                 <td th:text="${leads.status}">Status</td>
+                <td>
+                    <table border="1" style="width: 100%;">
+                        <tbody>
+                        <tr th:if="${ not#lists.isEmpty(leads.productList)}">
+                            <td th:each="products : ${leads.productList}"
+                                th:text="${products.name}">Products<td/>
+                        <tr/>
+                        <tr th:if="${#lists.isEmpty(leads.productList)}">
+                            Nil
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
                 <td>
                     <a th:href="@{'/load_edit_lead/' + ${leads.id}}">Edit</a>
                     <a th:href="@{'/delete_lead/' + ${leads.id}}">Delete</a>
