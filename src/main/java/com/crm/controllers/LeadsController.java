@@ -33,10 +33,13 @@ public class LeadsController {
 
     //  lead creation
     @RequestMapping("/new_lead")
-    public String showNewLeadsPage(Model model) {
+    public ModelAndView showNewLeadsPage(Model model) {
+        ModelAndView mav = new ModelAndView("new_lead");
         Leads leads = new Leads();
-        model.addAttribute("leads", leads);
-        return "new_lead";
+        List<Product> product= leadService.getAllProduct();
+        mav.addObject("leads", leads);
+        mav.addObject("productList",product);
+        return mav;
     }
 
     @RequestMapping(value = "/save_lead", method = RequestMethod.POST)
