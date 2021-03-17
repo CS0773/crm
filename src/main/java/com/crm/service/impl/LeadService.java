@@ -42,19 +42,7 @@ public class LeadService {
 		return repo.findById(id).get();
 	}
 	public List<Product> getAllProduct() {
-		return (productRepository.findAll());
-	}
-	@Transactional
-	public void getByName(Leads leads) {
-//		System.out.println("addingg");
-		List<Product> addList = new ArrayList<>();
-		for (Product p:leads.getProductList()) {
-			addList.add(productRepository.findByName(p.getName()));
-//			addList.forEach(s-> System.out.println(s.getName()));
-		}
-		Leads leads1=repo.getOne(leads.getId());
-		leads1.setProductList(addList);
-		repo.save(leads1);
+		return productRepository.findAll();
 	}
 	public void delete(int id) {
 		repo.deleteById(id);

@@ -72,8 +72,9 @@ public class LeadsController {
             leads1.setEmailId(leads.getEmailId());
             leads1.setPhoneNumber(leads.getPhoneNumber());
             leads1.setStatus(leads.getStatus());
+            leads1.setProductList(leads.getProductList());
             leadRepo.save(leads1);
-             leadService.getByName(leads);
+//             leadService.getByName(leads);
             return "edit_lead_success";
         }
 

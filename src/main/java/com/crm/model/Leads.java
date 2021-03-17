@@ -94,7 +94,7 @@ public class Leads {
         this.status = status;
     }
 
-    @OneToMany()
+    @ManyToMany(targetEntity = Product.class,cascade = CascadeType.ALL)
     public List<Product> getProductList() {
         return productList;
     }
