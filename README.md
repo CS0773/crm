@@ -3,4 +3,4 @@
 Project is meant for beginners in Java.
 
 
-Technologies used Spring Boot, Java 8, Spring MVC, Spring Security, Hibernate, MySQL
+Technologies used Html, Thymeleaf, CSS, Spring Boot, Java 8, Spring MVC, Spring Security, Hibernate, MySQL
