@@ -93,8 +93,9 @@ public class ProductController {
 
 
     //5 RESTful API method for Delete operation
-    @DeleteMapping("/delete_product/{id}")
-    public void delete(@PathVariable Integer id) {
+    @RequestMapping("/delete_product/{id}")
+    public String delete(@PathVariable Integer id) {
         service.delete(id);
+        return "redirect:/product_list";
     }
 }

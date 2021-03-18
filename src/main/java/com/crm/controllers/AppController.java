@@ -29,21 +29,11 @@ public class AppController {
 	@Autowired
 	private UserRepository userRepo;
 
-
-
-
 	@Autowired
 	private MemberRepository memberRepo;
 
 	@Autowired
-	private ActivityRepository activityRepo;
-
-	@Autowired
 	private ProductRepository productRepo;
-
-	@Autowired
-	private LeadRepository leadRepo;
-
 
 	@GetMapping("")
 	public String viewHomePage() {
@@ -258,7 +248,8 @@ public class AppController {
 		return "delete_success";
 	}
 
-	//list all activities
+/*
+	list all activities
 	@GetMapping("/activity_list")
 	public String showActivities(Model model) {
 		List<Activity> activityList = activityRepo.findAll();
@@ -315,5 +306,6 @@ public class AppController {
 	}
 
 
+*/
 
 }
