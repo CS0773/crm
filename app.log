@@ -1,0 +1,26 @@
+2021-03-18 11:46:37,895 INFO com.crm.CRMApplication [restartedMain] Starting CRMApplication on syslp447 with PID 10628 (D:\Assignment\CRM\crm-app\core-crm\target\classes started by elizabeth.jose in D:\Assignment\CRM\crm-app\core-crm)
+2021-03-18 11:46:37,896 DEBUG com.crm.CRMApplication [restartedMain] Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2021-03-18 11:46:37,896 INFO com.crm.CRMApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-03-18 11:46:39,545 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-03-18 11:46:39,545 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.14]
+2021-03-18 11:46:39,555 INFO org.apache.catalina.core.AprLifecycleListener [restartedMain] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-15.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\app\elizabeth.jose\product\18.0.0\dbhomeXE\bin;D:\app\elizabeth.jose\product\18.0.0\dbhomeXE\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\Java\jdk-11.0.10\bin;D:\Software\apache-maven-3.6.3\bin;D:\Software\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;D:\JWT_OAuth\app-log;D:\Software\Seq\;D:\Software\Seq\Client\;D:\Software\php-8.0.3;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;D:\Software\Python\Python39\Scripts\;D:\Software\Python\Python39\;C:\Users\elizabeth.jose\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Sophos\Sophos SSL VPN Client\bin;C:\Program Files\Azure Data Studio\bin;C:\Users\elizabeth.jose\AppData\Roaming\npm;C:\Users\elizabeth.jose\AppData\Local\Programs\Microsoft VS Code\bin;D:\Software\JetBrains\DataGrip_2020.3.2\bin;;;.]
+2021-03-18 11:46:39,791 INFO org.apache.jasper.servlet.TldScanner [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-03-18 11:46:39,807 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-03-18 11:46:39,976 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2021-03-18 11:46:40,292 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2021-03-18 11:46:40,342 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-03-18 11:46:40,423 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate Core {5.3.7.Final}
+2021-03-18 11:46:40,423 INFO org.hibernate.cfg.Environment [restartedMain] HHH000206: hibernate.properties not found
+2021-03-18 11:46:40,592 INFO org.hibernate.annotations.common.Version [restartedMain] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-03-18 11:46:40,719 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-03-18 11:46:41,619 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [restartedMain] HHH000397: Using ASTQueryTranslatorFactory
+2021-03-18 11:46:42,418 INFO com.crm.CRMApplication [restartedMain] Started CRMApplication in 4.919 seconds (JVM running for 5.633)
+2021-03-18 11:46:56,579 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-03-18 11:47:01,937 DEBUG com.crm.service.impl.LeadService [http-nio-8080-exec-9] Get All Lead success!
+2021-03-18 11:47:04,522 DEBUG com.crm.service.impl.LeadService [http-nio-8080-exec-3] Get Lead By Id success!
+2021-03-18 11:47:04,529 DEBUG com.crm.service.impl.LeadService [http-nio-8080-exec-3] Lead List successfully!
+2021-03-18 11:50:45,067 DEBUG com.crm.service.impl.LeadService [http-nio-8080-exec-8] Get All Lead success!
+2021-03-18 11:50:46,434 DEBUG com.crm.service.impl.LeadService [http-nio-8080-exec-9] Get All Lead success!
+2021-03-18 11:50:48,099 DEBUG com.crm.service.impl.LeadService [http-nio-8080-exec-2] Get All Lead success!

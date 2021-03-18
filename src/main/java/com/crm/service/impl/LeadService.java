@@ -35,29 +35,29 @@ public class LeadService {
 
 	public List<Leads> listAll() {
 
-		logger.info("Get All Lead success!");
+		logger.debug("Get All Lead success!");
 		return repo.findAll();
 	}
 	
 	public void save(Leads leads) {
 
-		logger.info("Lead Save successfully!");
+		logger.debug("Lead Save successfully!");
 		repo.save(leads);
 	}
 	
 	public Leads get(int id) {
-		logger.info("Get Lead By Id success!");
+		logger.debug("Get Lead By Id success!");
 
 		return repo.findById(id).get();
 	}
 
 	public List<Product> getAllProduct() {
-		logger.info("Lead List successfully!");
+		logger.debug("Lead List successfully!");
 		return productRepository.findAll();
 	}
 	public void delete(int id) {
 		repo.deleteById(id);
-		logger.info("Lead Deleted successfully!");
+		logger.debug("Lead Deleted successfully!");
 	}
 
 	@Transactional
@@ -86,7 +86,7 @@ public class LeadService {
 
 		repo.save(leads);
 
-		logger.info("Lead Convert successfully!");
+		logger.debug("Lead Convert successfully!");
 
 	}
 
