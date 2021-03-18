@@ -1,4 +1,6 @@
+# Base CRM - Customer Relationship Management - Project
+
+Project is meant for beginners in Java.
 
 
-
-# Mini CRM - Customer Relationship Management - Project using Spring Boot + Spring MVC + Spring Security + JSP + Hibernate + MySQL
+Technologies used Html, Thymeleaf, CSS, Spring Boot, Java 8, Spring MVC, Spring Security, Hibernate, MySQL
