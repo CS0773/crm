@@ -58,6 +58,16 @@
                                 th:text="${product.name}"></option>
                     </select>
                 </td>
+                <tr>
+                <td>Products Selected</td>
+                <td>
+                    <select name="productList" class="form-control select-checkbox" multiple>
+                        <option th:each="product : ${leads.productList}"
+                                th:value="${product.id}"
+                                th:text="${product.name}"></option>
+                    </select>
+                </td>
+            </tr>
             </tr>
                 <tr>
                 <td colspan="2"><button type="submit">Save</button> </td>

@@ -1,6 +1,5 @@
 package com.crm.service.impl;
 
-import com.crm.model.Opportunity;
 import com.crm.model.User;
 import com.crm.service.*;
 import org.slf4j.Logger;
@@ -21,11 +20,7 @@ public class UserService {
     @Autowired
     private LeadRepository repo;
 
-    @Autowired
-    private MemberRepository memberRepository;
 
-    @Autowired
-    private OpportunityRepository opportunityRepo;
 
     @Autowired
     private ProductRepository productRepository;

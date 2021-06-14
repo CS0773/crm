@@ -2,8 +2,6 @@ package com.crm.service.impl;
 
 import com.crm.model.*;
 import com.crm.service.LeadRepository;
-import com.crm.service.MemberRepository;
-import com.crm.service.OpportunityRepository;
 import com.crm.service.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +21,7 @@ public class LeadService {
 	@Autowired
 	private LeadRepository repo;
 
-	@Autowired
-	private MemberRepository memberRepository;
 
-	@Autowired
-	private OpportunityRepository opportunityRepo;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -71,18 +65,7 @@ public class LeadService {
 
 
 		// STEP 3 Create new Member
-		Member member = new Member();
-		member.setAccname(leads.getFirstName() + " " + leads.getLastName() + " - CONVERTED "+getRandomNumber(1,100));
-		member.setAccno(getRandomNumber(1,100000));
-//		member.setLead(leads);
-		memberRepository.save(member);
 
-		// STEP 2 Create new Opportunity
-		Opportunity opportunity = new Opportunity();
-		opportunity.setName(leads.getFirstName() + " " + leads.getLastName() + " - CONVERTED "+getRandomNumber(1,100));
-		opportunity.setDate(new Date().toString());
-//		opportunity.setMember(member);
-		opportunityRepo.save(opportunity);
 
 		repo.save(leads);
 

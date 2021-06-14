@@ -15,6 +15,7 @@ public class Leads {
     @Column(name="status", nullable=false)
     private LeadStatus status;
 
+    @Column(unique = true)
     private List<Product> productList;
 
     public Leads() {
@@ -93,11 +94,12 @@ public class Leads {
     public void setStatus(LeadStatus status) {
         this.status = status;
     }
-
+    @Column(unique = false)
     @ManyToMany(targetEntity = Product.class,cascade = CascadeType.ALL)
     public List<Product> getProductList() {
         return productList;
     }
+
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;

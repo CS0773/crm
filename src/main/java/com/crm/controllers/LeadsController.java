@@ -38,6 +38,7 @@ public class LeadsController {
         Leads leads = new Leads();
         List<Product> product= leadService.getAllProduct();
         mav.addObject("leads", leads);
+       // Product s= product.get(0);
         mav.addObject("productList",product);
         return mav;
     }

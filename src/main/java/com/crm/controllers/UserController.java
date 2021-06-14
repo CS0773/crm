@@ -1,6 +1,5 @@
 package com.crm.controllers;
 
-import com.crm.model.Opportunity;
 import com.crm.model.User;
 import com.crm.service.UserRepository;
 import com.crm.service.impl.UserService;
